@@ -3,36 +3,36 @@
 /**
  * main - Entry point
  *
- * Description: Prints all possible combinations of three different digits (0-9)
+ * Description: Prints all possible combinations of three different digits
  *              in ascending order, separated by ", ".
  *
  * Return: Always 0 (Success)
  */
 int main(void)
 {
-    int hundreds, tens, ones;
+	int num1, num2, num3;
 
-    for (hundreds = 0; hundreds <= 7; hundreds++)
-    {
-        for (tens = hundreds + 1; tens <= 8; tens++)
-        {
-            for (ones = tens + 1; ones <= 9; ones++)
-            {
-                putchar((hundreds % 10) + '0');
-                putchar((tens % 10) + '0');
-                putchar((ones % 10) + '0');
+	for (num1 = 0; num1 <= 7; num1++) /* Hundreds place */
+	{
+		for (num2 = num1 + 1; num2 <= 8; num2++) /* Tens place */
+		{
+			for (num3 = num2 + 1; num3 <= 9; num3++) /* Units place */
+			{
+				putchar(num1 + '0');
+				putchar(num2 + '0');
+				putchar(num3 + '0');
 
-                if (!(hundreds == 7 && tens == 8 && ones == 9))
-                {
-                    putchar(',');
-                    putchar(' ');
-                }
-            }
-        }
-    }
-    putchar('\n');
+				if (!(num1 == 7 && num2 == 8 && num3 == 9))
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+		}
+	}
+	putchar('\n');
 
-    return (0);
+	return (0);
 }
 
 
