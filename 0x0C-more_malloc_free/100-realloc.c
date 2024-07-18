@@ -1,53 +1,52 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
 /**
-* simple_print_buffer - prints buffer in hexadecimal format
-* @buffer: the address of memory to print
-* @size: the size of the memory to print
-* Return: Nothing
+* _realloc - ...
+* @ptr: ...
+* @old_size: ...
+* @new_size: ...
+*
+* Return: ...
 */
-void simple_print_buffer(char *buffer, unsigned int size)
+
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+	char *nptr;
 	unsigned int i;
 
-	i = 0;
-	while (i < size)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (ptr == NULL)
 	{
-		if (i % 10)
-		{
-			printf(" ");
-		}
-		if ((i % 10) && i)
-		{
-			printf("\n");
-		}
-		printf("0x%02x ", buffer[i]);
-		i++;
+		nptr = malloc(new_size);
+
+		if (nptr == NULL)
+			return (NULL);
+
+		return (nptr);
 	}
-	printf("\n");
-
-}
-
-/**
-*
-*Return: Always 0.
-*/
-int main(void)
-{
-	char *p;
-	int i;
-
-	p = malloc(sizeof(char) * 10);
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 98);
-	i = 0;
-	while (i < 98)
+	else
 	{
-		p[i++] = 98;
+		if (new_size == 0)
+		{
+			free(ptr);
+			return (NULL);
+		}
 	}
-	simple_print_buffer(p, 98);
-	free(p);
-	return (0);
+
+	nptr = malloc(new_size);
+
+	if (nptr == NULL)
+		return (NULL);
+
+	for (i = 0; i < old_size && i < new_size; i++)
+	{
+		nptr[i] = ((char *) ptr)[i];
+	}
+
+	free(ptr);
+	return (nptr);
 }
